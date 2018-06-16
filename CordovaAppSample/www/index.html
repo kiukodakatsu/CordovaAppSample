@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+	<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+	<script>
+		document.addEventListener('init', function (event) {
+			var page = event.target;
+
+			if (page.id === 'page1') {
+				page.querySelectorAll('.push-button-create, .push-button-join').forEach(function (button) {
+					button.onclick = function () {
+						document.querySelector('#myNavigator').pushPage('page2.html', { data: { title: 'Step 2' } });
+					};
+				});
+			} else if (page.id === 'page2') {
+				page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+				page.querySelectorAll('.push-button-solo, .push-button-multi').forEach(function (button) {
+					button.onclick = function () {
+						document.querySelector('#myNavigator').pushPage('page3.html', { data: { title: 'Step 3' } });
+					};
+				});
+			} else if (page.id === 'page3') {
+				page.querySelector('.push-button-submit').onclick = function () {
+					document.querySelector('#myNavigator').pushPage('complete.html', { data: { title: 'Complete' } });
+				};
+			}
+		});
+	</script>
+</head>
+<body>
+	<ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+	<template id="page1.html">
+		<ons-page id="page1">
+			<ons-toolbar>
+				<div class="center">Step 1</div>
+			</ons-toolbar>
+			<p>募集 or 参加？</p>
+			<ons-button class="push-button-create">募集</ons-button>
+			<ons-button class="push-button-join">参加</ons-button>
+		</ons-page>
+	</template>
+	<template id="page2.html">
+		<ons-page id="page2">
+			<ons-toolbar>
+				<div class="left"><ons-back-button>Step 1</ons-back-button></div>
+				<div class="center">Step 2</div>
+			</ons-toolbar>
+			<p>参加タイプを選択してください。</p>
+			<ons-button class="push-button-solo">ひとりで</ons-button>
+			<ons-button class="push-button-multi">みんなで</ons-button>
+		</ons-page>
+	</template>
+	<template id="page3.html">
+		<ons-page id="page3">
+			<ons-toolbar>
+				<div class="left"><ons-back-button>Step 1</ons-back-button></div>
+				<div class="center">Step 3</div>
+			</ons-toolbar>
+			<p>情報を入力してください。</p>
+			<div style="text-align: left; margin-top: 30px;">
+				<div>
+					<label>場所</label>
+					<ons-input id="shopname" modifier="underbar" float></ons-input>
+				</div>
+				<div>
+					<label>時間</label>
+					<ons-input id="datetime" modifier="underbar" float></ons-input>
+				</div>
+				<div>
+					<label>日付</label>
+					<ons-input id="date" modifier="underbar" float></ons-input>
+				</div>
+				<div>
+					<label>人数</label>
+					<ons-select id="choose-sel" onchange="editSelects(event)">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+					</ons-select>
+				</div>
+			</div>
+			<ons-button class="push-button-submit">登録</ons-button>
+		</ons-page>
+	</template>
+	<template id="complete.html">
+		<ons-page id="complete">
+			<ons-toolbar>
+				<div class="center">Complete</div>
+			</ons-toolbar>
+			<p>登録が完了しました。</p>
+		</ons-page>
+	</template>
+</body>
+</html>
