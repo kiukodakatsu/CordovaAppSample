@@ -3,8 +3,11 @@
 <head>
 	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
 	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css" />
 	<link href="css/index.css" rel="stylesheet" />
 	<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js"></script>
+	<script src="scripts/swiperBuilder.js"></script>
 	<script>
 		document.addEventListener('prechange', function (event) {
 			document.querySelector('ons-toolbar .center')
@@ -18,19 +21,40 @@
 			<div class="center">Home</div>
 		</ons-toolbar>
 		<ons-tabbar swipeable position="bottom">
-			<ons-tab page="home.html" label="Home" icon="ion-home, material:md-home" active>
+			<ons-tab page="home.html" icon="ion-home, material:md-home" active>
 			</ons-tab>
-			<ons-tab page="message.html" label="Message" icon="fa-envelope">
+			<ons-tab page="message.html" icon="fa-envelope">
 			</ons-tab>
-			<ons-tab page="favorite.html" label="Favorite" icon="fa-heart">
+			<ons-tab page="favorite.html" icon="fa-heart">
 			</ons-tab>
-			<ons-tab page="user.html" label="User" icon="fa-user">
+			<ons-tab page="user.html" icon="fa-user">
 			</ons-tab>
 		</ons-tabbar>
 	</ons-page>
 	<template id="home.html">
 		<ons-page id="Home">
-			<div class="news">ニュース</div>
+			<div class="news swiper-container">
+				<!-- 全スライドをまとめるラッパー -->
+				<div class="swiper-wrapper">
+					<!-- 各スライド -->
+					<div class="swiper-slide">
+						<img src="images/top1.jpg" />
+					</div>
+					<div class="swiper-slide">
+						<img src="images/top2.jpg" />
+					</div>
+					<div class="swiper-slide">
+						<img src="images/top3.jpg" />
+					</div>
+				</div>
+
+				<!-- ページネーションを表示する場合 -->
+				<div class="swiper-pagination"></div>
+
+				<!-- 前後スライドへのナビゲーションボタン(矢印)を表示する場合 -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
 			<div class="entry">
 				<div class="button-entry-join" onclick="location.href='edit.html'">参加</div>
 				<div class="button-entry-create">募集</div>
